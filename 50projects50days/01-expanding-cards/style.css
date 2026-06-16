@@ -1,0 +1,76 @@
+/* 补充：引入 Google Fonts，原项目使用 Muli 字体 */
+@import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    /* 补充：设置字体 */
+    font-family: 'Muli', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 补充：让 body 占满整个视口高度，卡片才能在垂直方向居中 */
+    height: 100vh;
+    /* 补充：隐藏溢出，避免出现滚动条 */
+    overflow: hidden;
+}
+
+.container {
+    width: 90vw;
+    display: flex;
+}
+
+.panel {
+    /* 补充：背景图三件套 —— 填充、居中、不重复，缺了背景图无法正常显示 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    flex: 0.5;
+    /* 补充：只过渡 flex 属性，而不是 all，性能更好 */
+    transition: flex 0.7s ease-in;
+    margin: 10px;
+    color: #fff;
+    position: relative;
+    height: 80vh;
+    border-radius: 50px;
+    /* 补充：鼠标悬停显示手型 */
+    cursor: pointer;
+}
+
+h3 {
+    /* 补充：明确字号 */
+    font-size: 24px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    /* 补充：清除 h3 默认 margin */
+    margin: 0;
+    opacity: 0;
+}
+
+/* 补充：使用 .panel.active 而不是 .active，提高选择器特异性 */
+.panel.active {
+    flex: 5;
+}
+
+.panel.active h3 {
+    /* 修正：opacity 取值范围是 0~1，之前写的 1.5 是无效值 */
+    opacity: 1;
+    /* 补充：只过渡 opacity（而非 all），加 0.4s 延迟 → 卡片展开后文字才淡入，这是整个动效的灵魂 */
+    transition: opacity 0.3s ease-in 0.4s;
+}
+
+/* 补充：小屏幕（≤480px）隐藏第 4、第 5 张卡片，手机上只能看到 3 张 */
+@media (max-width: 480px) {
+    .container {
+        width: 100vw;
+    }
+
+    .panel:nth-of-type(4),
+    .panel:nth-of-type(5) {
+        display: none;
+    }
+}
