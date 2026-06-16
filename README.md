@@ -6,4 +6,4 @@
 
 | 序号 | 项目 | 状态 |
 |------|------|------|
-| 01 | [Expanding Cards](./50projects50days/01-expanding-cards/) | ✅ 完成 |
+| 01 | [Expanding Cards](./50projects50days/01-expanding-cards/) | 完成 |
